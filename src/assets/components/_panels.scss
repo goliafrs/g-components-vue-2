@@ -1,0 +1,55 @@
+.g {
+  &-expansion {
+    &-panels {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+
+      &:not(.g-expansion-panels--flat):not(.g-expansion-panels--outline) {
+        @include g-elevation(2);
+      }
+
+      &--rounded {
+        border-radius: 16px;
+        overflow: hidden;
+      }
+      &--outline {
+        background-color: transparent;
+        box-shadow: none;
+        border-width: 1px;
+        border-style: solid;
+        border-color: $black-12;
+      }
+    }
+
+    &-panel {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+
+      & + .g-expansion-panel {
+        border-top: 1px solid $black-12;
+      }
+
+      &__header {
+        @include default-text-style(13px);
+
+        background-color: var(--white);
+        position: relative;
+        user-select: none;
+
+        &:hover {
+          background-color: $black-06;
+        }
+
+        &:active {
+          background-color: $black-12;
+        }
+      }
+
+      &__body {
+        background-color: var(--white);
+      }
+    }
+  }
+}

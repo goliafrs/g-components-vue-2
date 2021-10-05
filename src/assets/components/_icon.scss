@@ -1,0 +1,58 @@
+@mixin colors() {
+
+  @each $name,
+  $color in $colors {
+    &--#{$name} {
+      color: $color;
+    }
+  }
+}
+
+.g {
+  &-icon {
+    font-family: 'MaterialIcons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    font-display: block;
+    font-feature-settings: 'liga';
+    color: currentColor;
+    text-rendering: optimizeLegibility;
+    text-transform: none;
+    line-height: 1;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+
+    @include colors;
+
+    &--link {
+      cursor: pointer;
+    }
+
+    &--left {
+      margin-right: 8px;
+    }
+
+    &--right {
+      margin-left: 8px;
+    }
+
+    &--icofont {
+      font-family: 'IcoFont';
+
+      &.g-icon__icon {
+        @include get-icon($ico-font-codepoints, 'IcoFont');
+      }
+    }
+
+    &__icon {
+      @include get-icon($material-icons-codepoints);
+    }
+  }
+}

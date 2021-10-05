@@ -1,0 +1,19 @@
+@mixin backgrounds {
+  .bg {
+    @each $name, $color in $colors {
+      &--#{$name} {
+        background: var(--#{$name}) !important;
+      }
+    }
+  }
+
+  .bgc {
+    @each $name, $color in $colors {
+      &--#{$name} {
+        background-color: var(--#{$name}) !important;
+      }
+    }
+  }
+}
+
+@include backgrounds;

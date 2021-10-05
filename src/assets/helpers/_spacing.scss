@@ -1,0 +1,84 @@
+$spacer: 16px;
+$multipliers: (0: 0,
+  1: 0.25,
+  2: 0.5,
+  3: 1,
+  4: 1.5,
+  5: 3);
+$directions: 'top',
+'bottom',
+'left',
+'right';
+
+@mixin spacer($property) {
+  .#{str-slice($property, 0, 1)} {
+    @each $direction in $directions {
+      &#{str-slice($direction, 0, 1)} {
+        @each $index, $multiplier in $multipliers {
+          &-#{$index} {
+            #{$property}-#{$direction}: $spacer * $multiplier !important;
+          }
+        }
+        &px {
+          @each $size in $sizes {
+            &-#{$size} {
+              #{$property}-#{$direction}: #{$size}px !important;
+            }
+          }
+        }
+      }
+    }
+
+    &a {
+      @each $index, $multiplier in $multipliers {
+        &-#{$index} {
+          #{$property}: $spacer * $multiplier !important;
+        }
+      }
+      &px {
+        @each $size in $sizes {
+          &-#{$size} {
+            #{$property}: #{$size}px !important;
+          }
+        }
+      }
+    }
+
+    &x {
+      @each $index, $multiplier in $multipliers {
+        &-#{$index} {
+          #{$property}-left: $spacer * $multiplier !important;
+          #{$property}-right: $spacer * $multiplier !important;
+        }
+      }
+      &px {
+        @each $size in $sizes {
+          &-#{$size} {
+            #{$property}-left: #{$size}px !important;
+            #{$property}-right: #{$size}px !important;
+          }
+        }
+      }
+    }
+
+    &y {
+      @each $index, $multiplier in $multipliers {
+        &-#{$index} {
+          #{$property}-top: $spacer * $multiplier !important;
+          #{$property}-bottom: $spacer * $multiplier !important;
+        }
+      }
+      &px {
+        @each $size in $sizes {
+          &-#{$size} {
+            #{$property}-top: #{$size}px !important;
+            #{$property}-bottom: #{$size}px !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+@include spacer('margin');
+@include spacer('padding');

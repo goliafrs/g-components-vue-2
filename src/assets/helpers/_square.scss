@@ -1,0 +1,16 @@
+@mixin squares {
+  .square {
+    @each $size in $sizes {
+      &--#{$size} {
+        min-height: #{$size}px;
+        max-height: #{$size}px;
+        height: #{$size}px;
+        min-width: #{$size}px;
+        max-width: #{$size}px;
+        width: #{$size}px;
+      }
+    }
+  }
+}
+
+@include squares;

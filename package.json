@@ -1,0 +1,32 @@
+{
+  "name": "g-components",
+  "version": "1.13.8",
+  "description": "Vue.js components.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/team182/g-components"
+  },
+  "author": "team182",
+  "license": "MIT",
+  "scripts": {
+    "sass": "sass ./src/assets/main.scss ./dist/main.min.css --style compressed",
+    "sass-watch": "sass --watch ./src/assets/main.scss ./dist/main.min.css --style compressed"
+  },
+  "dependencies": {
+    "@popperjs/core": "^2.9.2",
+    "autoprefixer": "^10.2.6",
+    "g-proxy": "git+ssh://git@bitbucket.org:team182/g-proxy",
+    "imask": "^6.1.0",
+    "lodash": "^4.17.21",
+    "no-lodash": "git+ssh://git@bitbucket.org:team182/no-lodash",
+    "sass": "^1.35.1",
+    "sass-lint": "^1.13.1",
+    "sass-loader": "^10.1.1",
+    "unvue": "git+ssh://git@bitbucket.org:team182/unvue",
+    "vuex": "^3.6.2"
+  },
+  "devDependencies": {
+    "eslint": "^7.30.0"
+  }
+}

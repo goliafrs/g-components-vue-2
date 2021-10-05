@@ -1,0 +1,177 @@
+@mixin colors {
+  @each $name, $color in $colors {
+    &--#{$name} {
+      color: $color;
+    }
+  }
+}
+
+.g {
+  &-progress {
+    @include colors;
+
+    position: relative;
+
+    &-linear {
+      position: relative;
+      display: flex;
+      flex: 1;
+      overflow: hidden;
+      width: 100%;
+
+      &__bar {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+
+        &--determinate {
+          background-color: currentColor;
+          transition-property: width;
+          transition-duration: 1s;
+          transition-timing-function: linear;
+        }
+      }
+
+      &--indeterminate {
+        & > .g-progress-linear__bar {
+          width: 100%;
+
+          &::before,
+          &::after {
+            background-color: currentColor;
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+          }
+
+          &::before {
+            animation: indeterminate 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite;
+          }
+
+          &::after {
+            animation: indeterminate-short 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) infinite;
+            animation-delay: 1.15s;
+          }
+        }
+      }
+    }
+
+    &-circular {
+      position: relative;
+      vertical-align: middle;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      & svg {
+        margin: auto;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 100%;
+        width: 100%;
+        z-index: 0;
+      }
+
+      &__circle {
+        stroke: currentColor;
+        transition: all 0.6s ease-in-out;
+        z-index: 1;
+      }
+
+      &--indeterminate {
+        & svg {
+          animation: circular-rotate 1.4s linear infinite;
+          transform-origin: center center;
+          transition: all 0.2s ease-in-out;
+        }
+
+        & .g-progress-circular__circle {
+          animation: circular-dash 1.4s ease-in-out infinite;
+          stroke-linecap: round;
+          stroke-dasharray: 80, 200;
+          stroke-dashoffset: 0;
+        }
+      }
+    }
+
+    &__info {
+      @include default-text-style(13px);
+
+      color: currentColor;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1;
+    }
+  }
+}
+
+@keyframes indeterminate {
+  0% {
+    left: -35%;
+    right: 100%;
+  }
+
+  60% {
+    left: 100%;
+    right: -90%;
+  }
+
+  100% {
+    left: 100%;
+    right: -90%;
+  }
+}
+
+@keyframes indeterminate-short {
+  0% {
+    left: -200%;
+    right: 100%;
+  }
+
+  60% {
+    left: 107%;
+    right: -8%;
+  }
+
+  100% {
+    left: 107%;
+    right: -8%;
+  }
+}
+
+@keyframes circular-dash {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+  }
+
+  50% {
+    stroke-dasharray: 100, 200;
+    stroke-dashoffset: -15px;
+  }
+
+  100% {
+    stroke-dasharray: 100, 200;
+    stroke-dashoffset: -125px;
+  }
+}
+
+@keyframes circular-rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}

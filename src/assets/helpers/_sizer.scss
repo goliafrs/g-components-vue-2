@@ -1,0 +1,64 @@
+@use 'sass:math';
+
+@mixin sizer($property) {
+
+  .#{$property},
+  .#{str-slice($property, 0, 1)} {
+
+    &--full,
+    &--100 {
+      max-#{$property}: 100%;
+      #{$property}: 100%;
+    }
+
+    &--75 {
+      max-#{$property}: 75%;
+      #{$property}: 100%;
+    }
+
+    &--sixty,
+    &--60 {
+      max-#{$property}: 60%;
+      #{$property}: 100%;
+    }
+
+    &--half,
+    &--50 {
+      max-#{$property}: 50%;
+      #{$property}: 100%;
+    }
+
+    &--forty,
+    &--40 {
+      max-#{$property}: 40%;
+      #{$property}: 100%;
+    }
+
+    &--third,
+    &--33 {
+      max-#{$property}: math.div(100, 3) * 1%;
+      #{$property}: 100%;
+    }
+
+    &--fourth,
+    &--25 {
+      max-#{$property}: 25%;
+      #{$property}: 100%;
+    }
+
+    &--ten,
+    &--10 {
+      max-#{$property}: 10%;
+      #{$property}: 100%;
+    }
+
+    &--one,
+    &--1 {
+      max-#{$property}: 1%;
+      #{$property}: 100%;
+    }
+  }
+}
+
+@include sizer('height');
+@include sizer('width');

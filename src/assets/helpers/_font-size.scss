@@ -1,0 +1,11 @@
+@mixin font-size {
+  @each $size in $sizes {
+    &-#{$size} {
+      font-size: #{$size}px;
+    }
+  }
+}
+
+.fz {
+  @include font-size;
+}

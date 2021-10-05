@@ -1,0 +1,206 @@
+$size: 48px;
+$size-dense: 40px;
+
+@mixin colors {
+  @each $name, $color in $colors {
+    &--#{$name} {
+      color: var(--#{$name});
+    }
+  }
+}
+
+.g {
+  &-list {
+    background-color: var(--white);
+    display: flex;
+    flex-direction: column;
+
+    &--transparent {
+      background-color: transparent;
+    }
+
+    &--rounded {
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    &--wrap {
+      &.g-list-item__content {
+        text-overflow: clip;
+        white-space: normal;
+        overflow: auto;
+      }
+    }
+
+    &-item {
+      @include colors;
+
+      padding-left: 16px;
+      padding-right: 16px;
+      color: currentColor;
+      text-decoration: none;
+      user-select: none;
+      position: relative;
+      display: flex;
+      align-items: center;
+      flex: 1;
+      min-height: $size;
+
+      &:active,
+      &:visited {
+        color: currentColor;
+      }
+
+      &__holder {
+        @include absolute-height($size);
+        @include absolute-width($size);
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      &__content {
+        @include default-text-style(13px);
+
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        align-self: stretch;
+        flex: 1;
+      }
+
+      &--hovered,
+      &:hover {
+        &:not(.g-list-item--disabled) {
+          background-color: $black-06;
+        }
+      }
+
+      &:active {
+        &:not(.g-list-item--disabled) {
+          background-color: $black-12;
+        }
+      }
+
+      &--link {
+        cursor: pointer;
+      }
+
+      &--active {
+        & > .g-list-item__content {
+          color: var(--primary);
+        }
+
+        & > .g-list-item__holder {
+          & > .g-list-item__icon {
+            color: var(--primary);
+          }
+        }
+      }
+
+      &--disabled {
+        cursor: default;
+        color: $black-36;
+        user-select: none;
+      }
+
+      &--prefix {
+        padding-left: 0;
+
+        & > .g-list-item__content {
+          padding-left: 8px;
+        }
+      }
+
+      &--suffix {
+        padding-right: 0;
+
+        & > .g-list-item__content {
+          padding-right: 8px;
+        }
+      }
+    }
+
+    &-group {
+      &__activator {
+        & > .g-list-item {
+          &::after {
+            @include absolute-height($size);
+            @include absolute-width($size);
+
+            content: '\e315';
+            font-family: 'MaterialIcons';
+            font-size: 24px;
+            color: var(--grey);
+            line-height: $size;
+            text-align: center;
+            position: absolute;
+            top: 0;
+            right: 0;
+          }
+        }
+      }
+
+      &__content {
+        display: none;
+        flex-direction: column;
+        flex: 1;
+      }
+
+      &--active {
+        & > .g-list-group__activator {
+          & > .g-list-item {
+            &::after {
+              transform: rotate(90deg);
+            }
+          }
+        }
+
+        & > .g-list-group__content {
+          display: flex;
+
+          & > .g-list-item {
+            padding-left: $size + 8px;
+          }
+        }
+      }
+    }
+
+    &--dense {
+      & .g-list-item {
+        min-height: $size-dense;
+
+        & > .g-list-item__holder {
+          @include absolute-height($size-dense);
+          @include absolute-width($size-dense);
+
+          & > .g-list-item__icon {
+            font-size: 18px;
+          }
+        }
+      }
+
+      & > .g-list-group {
+        & > .g-list-group__activator {
+          & > .g-list-item {
+            &::after {
+              @include absolute-height($size-dense);
+              @include absolute-width($size-dense);
+
+              line-height: $size-dense;
+            }
+          }
+        }
+
+        & > .g-list-group__content {
+          & > .g-list-item {
+            padding-left: $size-dense + 8px;
+          }
+        }
+      }
+    }
+  }
+}

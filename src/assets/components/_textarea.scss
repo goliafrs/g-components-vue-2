@@ -1,0 +1,160 @@
+.g {
+  &-textarea {
+    @include input-base;
+    @include input-style('g-textarea');
+
+    &__group {
+      padding-bottom: 4px;
+      flex-wrap: nowrap;
+      align-items: flex-start;
+    }
+
+    &__prefix,
+    &__suffix {
+      @include default-text-style(16px, 400, 32px);
+
+      color: $black-54;
+      user-select: none;
+    }
+
+    &__prefix {
+      padding-right: 4px;
+      transition-property: opacity;
+      transition-duration: 350ms;
+      transition-timing-function: $transition-timing-function;
+    }
+
+    &__suffix {
+      padding-left: 4px;
+    }
+
+    &__input {
+      @include scrollbar;
+
+      padding-right: 16px;
+      line-height: 18px;
+      white-space: pre-wrap;
+
+      &--hidden {
+        opacity: 0;
+        pointer-events: none;
+        flex: 0;
+        min-width: 0;
+        width: 0;
+      }
+    }
+
+    &__before {
+      justify-content: flex-start;
+
+      & + .g-textarea__group {
+        padding-left: 0 !important;
+      }
+    }
+
+    &__after {
+      justify-content: flex-end;
+    }
+
+    &:hover:not(.g-textarea--disabled):not(.g-textarea--error) {
+      & .g-textarea__border {
+        border-bottom-color: $black-84;
+      }
+    }
+
+    &--clarable {
+      & .g-textarea__holder {
+        padding-right: 32px;
+      }
+    }
+
+    &--has {
+      &-before {
+        &:not(.g-textarea--filled):not(.g-textarea--active):not(.g-textarea--dense) {
+          & .g-textarea__label {
+            left: 32px;
+          }
+        }
+      }
+    }
+
+    &--solo,
+    &--outline,
+    &--outline-label {
+      & .g-textarea__group {
+        padding-top: 15px;
+        padding-bottom: 15px;
+        padding-left: 12px;
+        padding-right: 12px;
+        align-items: center;
+      }
+
+      &:not(.g-textarea--dense) {
+        & .g-textarea__before,
+        & .g-textarea__after {
+
+          & .g-textarea__before-holder,
+          & .g-textarea__after-holder {
+            @include absolute-height(48px);
+            @include absolute-width(48px);
+          }
+        }
+
+        & .g-textarea__prefix,
+        & .g-textarea__suffix {
+          line-height: 48px;
+        }
+      }
+    }
+
+    &--dense {
+      & .g-textarea__label {
+        max-width: calc(100% - 36px);
+      }
+
+      &.g-textarea--has-before {
+        & .g-textarea__label {
+          left: 38px;
+        }
+      }
+
+      & .g-textarea__before,
+      & .g-textarea__after {
+
+        & .g-textarea__before-holder,
+        & .g-textarea__after-holder {
+          @include absolute-height(36px);
+          @include absolute-width(36px);
+        }
+      }
+
+      & .g-textarea__prefix,
+      & .g-textarea__suffix {
+        line-height: 36px;
+      }
+    }
+  }
+}
+
+@keyframes shake {
+
+  from,
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translate3d(-10px, 0, 0);
+  }
+
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translate3d(10px, 0, 0);
+  }
+}

@@ -1,0 +1,21 @@
+.g {
+  &-divider {
+    border-style: dotted;
+    border-color: $black-12;
+    border-width: 0;
+    display: flex;
+    flex: 1;
+
+    &--horizontal {
+      @include absolute-height(1px);
+
+      border-top-width: 1px;
+    }
+
+    &--vertical {
+      @include absolute-width(1px);
+
+      border-left-width: 1px;
+    }
+  }
+}

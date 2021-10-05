@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "app/*": ["*"],
+      "assets/*": ["src/assets/*"]
+    },
+    "module": "commonjs",
+    "target": "es5"
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules/*/**", ".git/*/**", ".vscode/*/**", "dist/*/**"]
+}

@@ -1,0 +1,51 @@
+@mixin colors {
+
+  @each $name,
+  $color in $colors {
+    &--#{$name} {
+      color: var(--#{$name});
+    }
+  }
+}
+
+.text {
+  @include colors;
+
+  &-center {
+    text-align: center;
+  }
+
+  &-left {
+    text-align: left;
+  }
+
+  &-right {
+    text-align: right;
+  }
+
+  &-upper {
+    text-transform: uppercase;
+  }
+
+  &-lower {
+    text-transform: lowercase;
+  }
+
+  &-overflow {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  &-nowrap {
+    white-space: nowrap;
+  }
+
+  &-wrap {
+    white-space: pre-wrap;
+  }
+
+  &--line-through {
+    text-decoration: line-through;
+  }
+}

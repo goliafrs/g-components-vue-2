@@ -1,0 +1,54 @@
+@mixin col-gap($size: 16) {
+  col-gap: #{$size}px;
+}
+
+@mixin row-gap($size: 16) {
+  row-gap: #{$size}px;
+}
+
+@mixin gap {
+  @each $size in $sizes {
+    &-gap--#{$size} {
+      gap: #{$size}px;
+    }
+  }
+}
+@mixin gaps($type: 'col') {
+  @each $size in $sizes {
+    &-#{$type}-gap--#{$size} {
+      #{$type}-gap: #{$size}px;
+    }
+  }
+}
+
+$columns: 1,
+2,
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+10,
+11,
+12;
+
+@mixin cols {
+  @each $column in $columns {
+    &-cols--#{$column} {
+      grid-template-columns: repeat(#{$column}, 1fr);
+    }
+  }
+}
+
+.grid {
+  display: grid;
+  gap: 16px;
+
+  @include gap;
+  @include gaps;
+  @include gaps('row');
+
+  @include cols;
+}

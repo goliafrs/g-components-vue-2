@@ -1,0 +1,51 @@
+$g-animation-deceleration-curve-timing-function: cubic-bezier(0, 0, .2, 1) !default;
+$g-animation-standard-curve-timing-function: cubic-bezier(.4, 0, .2, 1) !default;
+$g-animation-acceleration-curve-timing-function: cubic-bezier(.4, 0, 1, 1) !default;
+$g-animation-sharp-curve-timing-function: cubic-bezier(.4, 0, .6, 1) !default;
+$g-animation-fast-out-slow-in-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !default;
+
+@mixin g-animation-deceleration-curve {
+  animation-timing-function: $g-animation-deceleration-curve-timing-function;
+}
+
+@mixin g-animation-standard-curve {
+  animation-timing-function: $g-animation-standard-curve-timing-function;
+}
+
+@mixin g-animation-acceleration-curve {
+  animation-timing-function: $g-animation-acceleration-curve-timing-function;
+}
+
+@mixin g-animation-sharp-curve {
+  animation-timing-function: $g-animation-sharp-curve-timing-function;
+}
+
+@function g-animation-enter($name, $duration, $delay: 0ms) {
+  @return $name $duration $delay $g-animation-deceleration-curve-timing-function;
+}
+
+@function g-animation-exit-permanent($name, $duration, $delay: 0ms) {
+  @return $name $duration $delay $g-animation-acceleration-curve-timing-function;
+}
+
+@function g-animation-exit-temporary($name, $duration, $delay: 0ms) {
+  @return $name $duration $delay $g-animation-sharp-curve-timing-function;
+}
+
+.g-animation {
+  &-deceleration-curve {
+    @include g-animation-deceleration-curve;
+  }
+
+  &-standard-curve {
+    @include g-animation-standard-curve;
+  }
+
+  &-acceleration-curve {
+    @include g-animation-acceleration-curve;
+  }
+
+  &-sharp-curve {
+    @include g-animation-sharp-curve;
+  }
+}

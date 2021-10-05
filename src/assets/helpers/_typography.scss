@@ -1,0 +1,87 @@
+.display {
+  &-1 {
+    font-size: 96px !important;
+    font-weight: 300 !important;
+  }
+
+  &-2 {
+    font-size: 60px !important;
+    font-weight: 300 !important;
+  }
+
+  &-3 {
+    font-size: 48px !important;
+    font-weight: 400 !important;
+  }
+
+  &-4 {
+    font-size: 34px !important;
+    font-weight: 400 !important;
+  }
+
+  &-5 {
+    font-size: 24px !important;
+    font-weight: 400 !important;
+  }
+
+  &-6 {
+    font-size: 20px !important;
+    font-weight: 500 !important;
+  }
+}
+
+.headline {
+  font-size: 20px !important;
+  font-weight: 400 !important;
+}
+
+.subtitle {
+  &-1 {
+    font-size: 16px !important;
+    font-weight: 400 !important;
+  }
+
+  &-2 {
+    font-size: 14px !important;
+    font-weight: 500 !important;
+  }
+}
+
+.body {
+  &-1 {
+    font-size: 16px !important;
+    font-weight: 400 !important;
+  }
+
+  &-2 {
+    font-size: 14px !important;
+    font-weight: 400 !important;
+  }
+}
+
+.button {
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  text-transform: capitalize !important;
+}
+
+.caption {
+  font-size: 12px !important;
+  font-weight: 400 !important;
+}
+
+.small {
+  font-size: 11px !important;
+  font-weight: 400 !important;
+}
+
+.tiny {
+  font-size: 9px !important;
+  font-weight: 400 !important;
+}
+
+.overline {
+  font-size: 10px !important;
+  font-weight: 400 !important;
+  text-transform: capitalize !important;
+}

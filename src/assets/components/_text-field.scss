@@ -1,0 +1,157 @@
+.g {
+  &-text-field {
+    @include input-base;
+    @include input-style('g-text-field');
+
+    &__label {
+      cursor: text;
+    }
+
+    &__group {
+      flex-wrap: nowrap;
+      align-items: flex-start;
+      cursor: text;
+    }
+
+    &__prefix,
+    &__suffix {
+      @include default-text-style(16px, 400, 32px);
+
+      color: $black-54;
+      user-select: none;
+    }
+
+    &__prefix {
+      padding-right: 4px;
+      transition-property: opacity;
+      transition-duration: 350ms;
+      transition-timing-function: $transition-timing-function;
+    }
+
+    &__suffix {
+      padding-left: 4px;
+    }
+
+    &__input {
+      @include default-text-style(16px, 400, 32px);
+
+      &--hidden {
+        opacity: 0;
+        pointer-events: none;
+        flex: 0;
+        min-width: 0;
+        width: 0;
+      }
+    }
+
+    &__before {
+      justify-content: flex-start;
+
+      & + .g-text-field__group {
+        padding-left: 0 !important;
+      }
+    }
+
+    &__after {
+      justify-content: flex-end;
+    }
+
+    & input {
+
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+
+      &[type='number'] {
+        -moz-appearance: textfield;
+      }
+    }
+
+    &:hover:not(.g-text-field--disabled):not(.g-text-field--error) {
+      & .g-text-field__border {
+        border-bottom-color: $black-84;
+      }
+    }
+
+    &--clarable {
+      & .g-text-field__holder {
+        padding-right: 32px;
+      }
+    }
+
+    &--has {
+      &-before {
+        &:not(.g-text-field--filled):not(.g-text-field--active):not(.g-text-field--dense) {
+          & .g-text-field__label {
+            left: 32px;
+          }
+        }
+      }
+    }
+
+    &--solo,
+    &--outline,
+    &--outline-label {
+      &:not(.g-text-field--dense) {
+        & .g-text-field__before,
+        & .g-text-field__after {
+
+          & .g-text-field__before-holder,
+          & .g-text-field__after-holder {
+            @include absolute-height(48px);
+            @include absolute-width(48px);
+          }
+        }
+
+        & .g-text-field__prefix,
+        & .g-text-field__suffix,
+        & .g-text-field__input {
+          line-height: 48px;
+        }
+      }
+    }
+
+    &--dense {
+      & .g-text-field__before,
+      & .g-text-field__after {
+
+        & .g-text-field__before-holder,
+        & .g-text-field__after-holder {
+          @include absolute-height(36px);
+          @include absolute-width(36px);
+        }
+      }
+
+      & .g-text-field__prefix,
+      & .g-text-field__suffix,
+      & .g-text-field__input {
+        line-height: 36px;
+      }
+    }
+  }
+}
+
+@keyframes shake {
+
+  from,
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translate3d(-10px, 0, 0);
+  }
+
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translate3d(10px, 0, 0);
+  }
+}

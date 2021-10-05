@@ -1,0 +1,108 @@
+@use 'sass:math';
+
+$step: 4px;
+$rail-height: 18px;
+$rail-width: 36px;
+$thumb-height: $rail-height - $step;
+$thumb-width: $rail-height - $step;
+
+.g {
+  &-switch {
+    display: flex;
+    align-items: center;
+    justify-self: flex-start;
+    user-select: none;
+    cursor: pointer;
+
+
+    &__rail {
+      @include absolute-height($rail-height);
+      @include absolute-width($rail-width);
+
+      background-color: var(--error);
+      border-radius: math.div($rail-height, 2);
+      position: relative;
+      transition-property: background-color;
+      transition-duration: 100ms;
+    }
+
+    &__thumb {
+      @include absolute-height($thumb-height);
+      @include absolute-width($thumb-width);
+
+      margin-top: math.div(-$thumb-height, 2);
+      background-color: var(--white);
+      border-radius: 50%;
+      transition-property: left;
+      transition-duration: 100ms;
+      position: absolute;
+      top: 50%;
+      left: math.div($step, 2);
+    }
+
+    &__label {
+      @include default-text-style;
+
+      padding-left: 16px;
+      padding-right: 16px;
+      color: $black-84;
+      cursor: pointer;
+    }
+
+    &--small {
+      & > .g-switch__rail {
+        @include absolute-height($rail-height - $step);
+        @include absolute-width($rail-width - $step);
+
+        border-radius: $rail-height - math.div($step, 2);
+
+        & > .g-switch__thumb {
+          @include absolute-height($thumb-height - $step);
+          @include absolute-width($thumb-width - $step);
+
+          margin-top: -(math.div($thumb-height - $step, 2));
+        }
+      }
+    }
+
+    &--large {
+      & > .g-switch__rail {
+        @include absolute-height($rail-height + $step);
+        @include absolute-width($rail-width + $step);
+
+        border-radius: $rail-height + math.div($step, 2);
+
+        & > .g-switch__thumb {
+          @include absolute-height($thumb-height + $step);
+          @include absolute-width($thumb-width + $step);
+
+          margin-top: -(math.div($thumb-height + $step, 2));
+        }
+      }
+    }
+
+    &--checked {
+      & > .g-switch__rail {
+        background-color: var(--success);
+
+        & > .g-switch__thumb {
+          left: $rail-width - $thumb-width - math.div($step, 2);
+        }
+      }
+    }
+
+    &--disabled {
+      & > .g-switch__rail {
+        background-color: $grey-200;
+
+        & > .g-switch__thumb {
+          background-color: $grey-400;
+        }
+      }
+
+      & > .g-switch__label {
+        color: $grey-400;
+      }
+    }
+  }
+}

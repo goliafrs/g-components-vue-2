@@ -1,0 +1,444 @@
+@mixin input-base {
+  padding-top: 14px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  min-width: 56px;
+  width: 100%;
+
+  &__label {
+    @include default-text-style;
+
+    padding-right: 16px;
+    color: $black-54;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    user-select: none;
+    position: absolute;
+    transition-property: font-size, color, top, left;
+    transition-duration: $transition-duration;
+    transition-timing-function: $transition-timing-function;
+    will-change: font-size, color, top, left;
+    overflow: hidden;
+    top: 22px;
+    left: 0;
+    max-width: calc(100% - 32px);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  &__holder {
+    display: flex;
+    align-items: flex-start;
+  }
+
+  &__group {
+    display: flex;
+    flex: 1;
+    position: relative;
+    user-select: none;
+    overflow: hidden;
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    height: 0;
+    width: 100%;
+  }
+
+  &__border {
+    transition-property: border-bottom-color;
+    transition-duration: 200ms;
+    transition-timing-function: $transition-timing-function;
+    will-change: border-bottom-color;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: $black-54;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 0;
+    width: 100%;
+
+    &::before {
+      content: '';
+      border-bottom-width: 0;
+      border-bottom-style: solid;
+      border-bottom-color: currentColor;
+      transition-property: border-bottom-color, border-bottom-width, width, left;
+      transition-duration: 240ms;
+      transition-timing-function: $transition-timing-function;
+      will-change: border-bottom-color, border-bottom-width, width, left;
+      position: absolute;
+      top: -1px;
+      left: 50%;
+      opacity: 0;
+      height: 0;
+      width: 0;
+    }
+  }
+
+  &__details {
+    @include default-text-style(12px);
+
+    margin-top: 8px;
+    color: $black-54;
+    user-select: none;
+    display: flex;
+    justify-content: space-between;
+    min-height: 14px;
+
+    &--left {
+      padding-right: 8px;
+      display: inline-block;
+    }
+  }
+}
+
+@mixin input-style($component) {
+
+  &__before,
+  &__after {
+    color: $black-54;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    overflow: hidden;
+
+    &-holder {
+      @include absolute-height(32px);
+      @include absolute-width(32px);
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &--pointer {
+
+      &.#{$component}__before-holder,
+      &.#{$component}__after-holder {
+        cursor: pointer;
+      }
+    }
+  }
+
+  &--solo,
+  &--outline,
+  &--outline-label {
+    padding-top: 0;
+
+    &.#{$component}--has-before {
+      &:not(.#{$component}--filled):not(.#{$component}--dense) {
+        & .#{$component}__label {
+          left: 60px;
+        }
+      }
+    }
+
+    & .#{$component}__holder {
+      background-color: var(--white);
+    }
+
+    & .#{$component}__group {
+      padding-left: 12px;
+      padding-right: 12px;
+      align-items: center;
+    }
+
+    &:not(.#{$component}--dense) {
+      & .#{$component}__label {
+        left: 13px;
+        max-width: calc(100% - 48px);
+      }
+    }
+
+    & .#{$component}__footer {
+      padding-left: 12px;
+      padding-right: 12px;
+    }
+
+    & .#{$component}__details {
+      padding-left: 12px;
+    }
+  }
+
+  &--solo,
+  &--outline {
+    &:not(.#{$component}--dense) {
+      & .#{$component}__label {
+        top: 15px;
+      }
+    }
+  }
+
+  &--solo {
+    &:not(.#{$component}--flat) {
+      & .#{$component}__holder {
+        @include g-elevation(2);
+      }
+    }
+  }
+
+  &--outline,
+  &--outline-label {
+    & .#{$component}__holder {
+      border-style: solid;
+      border-width: 1px;
+      border-color: $black-12;
+    }
+  }
+
+  &--outline-label {
+    padding-top: 22px;
+
+    &:not(.#{$component}--dense) {
+      & .#{$component}__label {
+        top: 38px;
+      }
+    }
+
+    &.#{$component}--dense {
+      & .#{$component}__label {
+        top: 32px;
+      }
+    }
+  }
+
+  &--dense {
+    & .#{$component}__label {
+      top: 9px;
+      left: 13px;
+      max-width: calc(100% - 36px);
+
+      @if $component == 'g-textarea' {
+        top: 15px;
+      }
+    }
+
+    &.#{$component}--has-before {
+      & .#{$component}__label {
+        left: 38px;
+      }
+    }
+  }
+
+  &--rounded {
+    & .#{$component}__holder {
+      border-radius: 12px;
+    }
+  }
+
+  &--filled {
+    & .#{$component}__label {
+      color: $black-54;
+    }
+
+    &.#{$component}--solo,
+    &.#{$component}--outline {
+      & .#{$component}__label {
+        opacity: 0;
+      }
+    }
+  }
+
+  &--labeled,
+  &--filled {
+    & .#{$component}__input {
+      &::placeholder {
+        opacity: 0;
+      }
+    }
+  }
+
+  &--filled,
+  &--active {
+    &:not(.#{$component}--solo):not(.#{$component}--outline) {
+      & .#{$component}__label {
+        font-size: 12px;
+        top: 0;
+        max-width: 100%;
+      }
+    }
+  }
+
+  &--active {
+    &:not(.#{$component}--filled):not(.#{$component}--labeled) {
+      & .#{$component}__input {
+        &::placeholder {
+          opacity: 1;
+        }
+      }
+    }
+
+    & .#{$component}__before,
+    & .#{$component}__after {
+      color: currentColor;
+    }
+
+    & .#{$component}__border {
+      border-bottom-color: currentColor;
+
+      &::before {
+        border-bottom-width: 2px;
+        border-bottom-color: currentColor;
+        opacity: 1;
+        left: 0;
+        width: 100%;
+      }
+    }
+
+    &.#{$component}--outline {
+      & .#{$component}__holder {
+        border-color: var(--primary);
+      }
+    }
+  }
+
+  &--focused {
+
+    & .#{$component}__label,
+    & .#{$component}__before,
+    & .#{$component}__after {
+      color: var(--primary);
+    }
+
+    & .#{$component}__border {
+      border-bottom-color: var(--primary);
+
+      &::before {
+        border-bottom-color: var(--primary);
+      }
+    }
+  }
+
+  &--disabled {
+    & * {
+      cursor: default;
+      user-select: none;
+    }
+
+    & .#{$component}__label,
+    & .#{$component}__selection,
+    & .#{$component}__before,
+    & .#{$component}__after,
+    & .#{$component}__input,
+    & .#{$component}__details {
+      color: $black-36;
+    }
+
+    & .#{$component}__border {
+      border-bottom-color: $black-36;
+      border-bottom-style: dotted;
+    }
+  }
+
+  &--error {
+
+    & .#{$component}__label,
+    & .#{$component}__before,
+    & .#{$component}__after,
+    & .#{$component}__input,
+    & .#{$component}__details {
+      color: var(--error);
+    }
+
+    & .#{$component}__input,
+    & .#{$component}__label {
+      &::placeholder {
+        color: var(--error);
+        opacity: 1;
+      }
+    }
+
+    & .#{$component}__border {
+      border-bottom-color: var(--error);
+
+      &::before {
+        border-bottom-color: var(--error);
+      }
+    }
+
+    &.#{$component}--outline {
+      & .#{$component}__holder {
+        border-color: var(--error);
+      }
+    }
+  }
+
+  &--success {
+
+    & .#{$component}__label,
+    & .#{$component}__before,
+    & .#{$component}__after,
+    & .#{$component}__input,
+    & .#{$component}__details {
+      color: var(--success);
+    }
+
+    & .#{$component}__input,
+    & .#{$component}__label {
+      &::placeholder {
+        color: var(--success);
+        opacity: 1;
+      }
+    }
+
+    & .#{$component}__border {
+      border-bottom-color: var(--success);
+
+      &::before {
+        border-bottom-color: var(--success);
+      }
+    }
+
+    &.#{$component}--outline {
+      & .#{$component}__holder {
+        border-color: var(--success);
+      }
+    }
+  }
+}
+
+.g {
+  &-input {
+    @include default-text-style(16px, 400);
+
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    background-color: transparent;
+    border: 0;
+    outline: none;
+    color: $black-84;
+    caret-color: $black-84;
+    transition-property: color;
+    transition-duration: 200ms;
+    transition-timing-function: $transition-timing-function;
+    position: relative;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    flex: 1;
+    cursor: text;
+    min-width: 16px;
+    width: 100%;
+
+    &::placeholder {
+      @include default-text-style(16px, 400, inherit);
+
+      color: $black-54;
+      opacity: 1;
+      transition-property: opacity;
+      transition-duration: 200ms;
+      transition-timing-function: $transition-timing-function;
+    }
+  }
+}

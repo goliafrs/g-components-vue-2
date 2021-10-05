@@ -1,0 +1,41 @@
+.g {
+  &-overlay {
+    background-color: $black-36;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 7;
+  }
+}
+
+.show-overlay {
+  &-enter {
+    opacity: 0;
+
+    &-active {
+      transition-property: opacity;
+      transition-duration: $transition-duration;
+      transition-timing-function: $transition-timing-function;
+    }
+
+    &-to {
+      opacity: 1;
+    }
+  }
+
+  &-leave {
+    opacity: 1;
+
+    &-active {
+      transition-property: opacity;
+      transition-duration: $transition-duration;
+      transition-timing-function: $transition-timing-function;
+    }
+
+    &-to {
+      opacity: 0;
+    }
+  }
+}

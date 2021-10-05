@@ -1,0 +1,20 @@
+.g {
+  &-subheader {
+    padding-left: 16px;
+    padding-right: 16px;
+
+    @include default-text-style(14px, 500);
+
+    color: $black-54;
+    display: flex;
+    align-items: center;
+    min-height: 48px;
+
+    &--dense {
+      padding-left: 8px;
+      padding-right: 8px;
+      font-size: 13px;
+      min-height: 40px;
+    }
+  }
+}

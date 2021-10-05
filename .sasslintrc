@@ -1,0 +1,25 @@
+{
+  "rules": {
+    "property-sort-order": [
+      1,
+      {
+        "order": "concretic"
+      }
+    ],
+    "nesting-depth": [
+      0
+    ],
+    "leading-zero": [
+      1,
+      {
+        "include": true
+      }
+    ],
+    "hex-length": [
+      1,
+      {
+        "style": "long"
+      }
+    ]
+  }
+}

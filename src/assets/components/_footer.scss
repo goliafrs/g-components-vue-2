@@ -1,0 +1,36 @@
+@mixin colors {
+  @each $name, $color in $colors {
+    &--#{$name} {
+      color: var(--white);
+      background-color: $color;
+
+      @if $name == 'white' {
+        color: $black-84;
+      }
+    }
+  }
+}
+
+.g {
+  &-footer {
+    @include default-text-style(12px);
+    @include absolute-height(48px);
+    @include colors;
+
+    background-color: $grey-200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+
+    &--dense {
+      @include absolute-height(40px);
+    }
+
+    &--fixed {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+    }
+  }
+}

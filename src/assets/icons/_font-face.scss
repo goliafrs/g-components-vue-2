@@ -1,0 +1,23 @@
+$path-to-icofont: './fonts/IcoFont';
+
+@font-face {
+  font-family: 'IcoFont';
+  font-style: normal;
+  font-weight: 400;
+  src: url('#{$path-to-icofont}.eot');
+  src: url('#{$path-to-icofont}.woff2') format('woff2'),
+  url('#{$path-to-icofont}.woff') format('woff'),
+  url('#{$path-to-icofont}.ttf') format('truetype');
+}
+
+$path-to-material-icons: './fonts/MaterialIcons';
+
+@font-face {
+  font-family: 'MaterialIcons';
+  font-style: normal;
+  font-weight: 400;
+  src: url('#{$path-to-material-icons}.eot');
+  src: url('#{$path-to-material-icons}.woff2') format('woff2'),
+  url('#{$path-to-material-icons}.woff') format('woff'),
+  url('#{$path-to-material-icons}.ttf') format('truetype');
+}

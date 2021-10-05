@@ -1,0 +1,220 @@
+.g {
+  &-table {
+    border-collapse: collapse;
+    position: relative;
+    width: 100%;
+
+    &__caption {
+      @include default-text-style(11px);
+
+      padding-top: 16px;
+      padding-bottom: 16px;
+      padding-left: 16px;
+      padding-bottom: 16px;
+    }
+
+    &__head {
+      border-bottom: 1px solid $black-12;
+      user-select: none;
+
+      &-row {
+        height: 48px;
+      }
+
+      &-cell {
+        padding-left: 16px;
+        padding-right: 16px;
+
+        &-title {
+          @include default-text-style(12px, 700);
+
+          color: $black-54;
+          white-space: nowrap;
+
+          &--sort {
+            cursor: pointer;
+            position: relative;
+
+            &::before {
+              margin-top: -8px;
+              content: '\e5c5';
+              font-family: 'MaterialIcons';
+              font-size: 16px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              position: absolute;
+              top: 50%;
+              color: $black-36;
+              opacity: 0;
+              transition-property: opacity, transform;
+              transition-duration: $transition-duration;
+              transition-timing-function: $transition-timing-function;
+              min-height: 16px;
+              max-height: 16px;
+              height: 16px;
+              min-width: 16px;
+              max-width: 16px;
+              width: 16px;
+            }
+
+            &-desc {
+              &::before {
+                transform: rotate(180deg);
+              }
+            }
+
+            &-active {
+              color: $black-84;
+
+              &::before {
+                color: $black-84;
+                opacity: 1;
+              }
+            }
+
+            &:hover {
+              &::before {
+                opacity: 1;
+              }
+            }
+          }
+        }
+
+        &--left {
+          text-align: left;
+
+          & .g-table__head-cell-title--sort {
+            &::before {
+              left: 100%;
+            }
+          }
+        }
+
+        &--right {
+          text-align: right;
+        }
+
+        &--center {
+          text-align: center;
+        }
+
+        &--right,
+        &--center {
+          & .g-table__head-cell-title--sort {
+            &::before {
+              right: 100%;
+            }
+          }
+        }
+      }
+    }
+
+    &__body {
+      & > tr {
+        height: 48px;
+
+        &:hover {
+          background-color: $black-06;
+        }
+
+        & + tr {
+          border-top: 1px solid $black-12;
+        }
+
+        & > td {
+          padding-left: 16px;
+          padding-right: 16px;
+
+          @include default-text-style(13px);
+
+          color: $black-84;
+        }
+      }
+    }
+
+    &__foot {
+      border-top: 1px solid $black-12;
+      user-select: none;
+
+      &-row {
+        height: 48px;
+      }
+    }
+
+    &__empty {
+      @include default-text-style(13px);
+
+      padding-top: 32px;
+      padding-bottom: 32px;
+      padding-left: 32px;
+      padding-right: 32px;
+      color: $black-36;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 1;
+      width: 100%;
+    }
+
+    &--dense {
+      & > .g-table__caption {
+        padding-top: 8px;
+        padding-bottom: 8px;
+        padding-left: 8px;
+        padding-bottom: 8px;
+      }
+
+      & .g-table__head-row,
+      & .g-table__foot-row {
+        height: 40px;
+      }
+
+      & .g-table__head-cell {
+        padding-left: 8px;
+        padding-right: 8px;
+      }
+
+      & .g-table__body {
+        & > tr {
+          height: 40px;
+
+          & > td {
+            padding-left: 8px;
+            padding-right: 8px;
+          }
+        }
+      }
+    }
+
+    &--tiny {
+      & > .g-table__caption {
+        padding-top: 4px;
+        padding-bottom: 4px;
+        padding-left: 4px;
+        padding-bottom: 4px;
+      }
+
+      & .g-table__head-row,
+      & .g-table__foot-row {
+        height: 32px;
+      }
+
+      & .g-table__head-cell {
+        padding-left: 4px;
+        padding-right: 4px;
+      }
+
+      & .g-table__body {
+        & > tr {
+          height: 32px;
+
+          & > td {
+            padding-left: 4px;
+            padding-right: 4px;
+          }
+        }
+      }
+    }
+  }
+}

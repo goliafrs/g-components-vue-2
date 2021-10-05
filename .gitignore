@@ -1,0 +1,5 @@
+.DS_Store
+.nuxt
+.vscode/sftp.json
+
+node_modules

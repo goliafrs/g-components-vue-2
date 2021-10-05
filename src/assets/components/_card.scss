@@ -1,0 +1,77 @@
+@mixin accent-colors {
+  @each $name, $color in $colors {
+    &--accent-#{$name} {
+      border-color: $color;
+    }
+  }
+}
+
+.g {
+  &-card {
+    @include accent-colors;
+
+    background-color: var(--white);
+    display: flex;
+    flex-direction: column;
+
+    &-actions {
+      @include absolute-height(48px);
+
+      padding-top: 6px;
+      padding-bottom: 6px;
+      padding-left: 8px;
+      padding-right: 8px;
+      display: flex;
+      align-items: center;
+
+      & > *,
+      & .g-button {
+        margin: 0;
+      }
+
+      & .g-button + .g-button {
+        margin-left: 8px;
+      }
+
+      &--dense {
+        @include absolute-height(40px);
+      }
+    }
+
+    &:not(.g-card--flat):not(.g-card--outline) {
+      @include g-elevation(2);
+    }
+
+    &--outline {
+      border-width: 1px;
+      border-style: solid;
+      border-color: $black-12;
+    }
+
+    &--hover {
+      &:hover {
+        background-color: $black-06;
+        cursor: pointer;
+      }
+
+      &:active {
+        background-color: $black-12;
+      }
+
+      &:not(.g-card--flat):not(.g-card--outline) {
+        &:hover {
+          @include g-elevation(6);
+        }
+      }
+    }
+
+    &--rounded {
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    &--transparent {
+      background-color: transparent;
+    }
+  }
+}

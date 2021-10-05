@@ -1,0 +1,111 @@
+.g {
+  &-app {
+    background-color: $grey-50;
+    color: $black-84;
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex: 1;
+    min-height: 100vh;
+
+    &--center {
+      align-items: center;
+      justify-content: center;
+    }
+
+    &--dark {
+      background-color: $grey-900;
+      color: $grey-200;
+
+      & .g-card,
+      & .g-date-picker,
+      & .g-dialog__holder,
+      & .g-menu__content,
+      & .g-list,
+      & .g-sidebar {
+        background-color: $grey-800;
+      }
+
+      & .g-footer {
+        background-color: $grey-700;
+      }
+
+      & .g-text-field__holder,
+      & .g-text-field--solo > .g-text-field__holder,
+      & .g-text-field--outline > .g-text-field__holder,
+      & .g-select__holder,
+      & .g-select--solo > .g-select__holder,
+      & .g-select--outline > .g-select__holder,
+      & .g-expansion-panel__header,
+      & .g-expansion-panel__body {
+        background-color: $grey-600;
+      }
+
+      & .g-button {
+        &:not(.g-button--flat) {
+          background-color: $grey-600;
+        }
+
+        &.g-button--flat {
+          &:hover {
+            &::before {
+              background-color: $white-24;
+            }
+          }
+
+          &:active {
+            &::before {
+              background-color: $white-36;
+            }
+          }
+        }
+
+        &.g-button--disabled {
+          background-color: $black-36;
+          color: $grey-600;
+
+          & > .g-button__content,
+          & > .g-button__loading,
+          & > .g-button__loading > .g-progress-circular {
+            color: $grey-600;
+          }
+        }
+
+        & > .g-button__content,
+        & > .g-button__loading {
+          color: $grey-200;
+        }
+      }
+
+      & .g-divider {
+        border-top-color: $grey-200;
+      }
+
+      & .g-text-field__label,
+      & .g-select__label,
+      & .g-select__selection,
+      & .g-table__head-cell-title--sort-active,
+      & .g-table__head-cell-title--sort-active::before,
+      & .g-date-picker__matrix-day-of-week,
+      & .g-table__body > tr > td,
+      & .g-button,
+      & .g-menu {
+        color: $grey-200;
+      }
+
+      & .g-text-field__input,
+      & .g-select__input {
+        color: $grey-200;
+        caret-color: $grey-200;
+      }
+
+      & .g-text-field__details,
+      & .g-select__details,
+      & .g-table__head-cell-title,
+      & .g-table__head-cell-title--sort::before {
+        color: $grey-400;
+      }
+    }
+  }
+}

@@ -1,0 +1,233 @@
+@function str-split($string, $separator) {
+  $split-arr: ();
+  $index: str-index($string, $separator);
+
+  @while $index !=null {
+    $item: str-slice($string, 1, $index - 1);
+    $split-arr: append($split-arr, $item);
+    $string: str-slice($string, $index + 1);
+    $index: str-index($string, $separator);
+  }
+
+  $split-arr: append($split-arr, $string);
+
+  @return $split-arr;
+}
+
+$prefixes: align,
+justify,
+place;
+
+$suffixes: content,
+items,
+self;
+
+$properties: center,
+start,
+end,
+flex-start,
+flex-end,
+normal,
+baseline,
+space-between,
+space-around,
+space-evenly,
+stretch,
+inherit,
+initial,
+unset;
+
+@mixin properties {
+  @each $prefix in $prefixes {
+    @each $suffix in $suffixes {
+      @each $property in $properties {
+        &-#{$prefix}-#{$suffix}-#{$property} {
+          @extend .flex;
+
+          #{$prefix}-#{$suffix}: $property;
+        }
+      }
+    }
+  }
+}
+
+@mixin short-properties {
+  @each $prefix in $prefixes {
+    @each $suffix in $suffixes {
+      @each $property in $properties {
+        $short-prefix: str-slice($prefix, 1, 1);
+        $short-suffix: str-slice($suffix, 1, 1);
+
+        $index: str-index($property, '-');
+
+        @if $index==null {
+          $short-property: str-slice($property, 1, 1);
+
+          &#{$short-prefix}#{$short-suffix}#{$short-property} {
+            @extend .f;
+
+            #{$prefix}-#{$suffix}: $property;
+          }
+        }
+
+        @else {
+          $short-property: '';
+          $words: str-split($property, '-');
+
+          @each $word in $words {
+            $short-property: str-insert($short-property, str-slice($word, 1, 1), 100);
+          }
+
+          &#{$short-prefix}#{$short-suffix}#{$short-property} {
+            @extend .f;
+
+            #{$prefix}-#{$suffix}: $property;
+          }
+        }
+      }
+    }
+  }
+}
+
+.f {
+  display: flex;
+
+  &r,
+  &rr,
+  &c,
+  &cr,
+  &w,
+  &nw,
+  &f {
+    @extend .f;
+  }
+
+  @include short-properties;
+
+  &r {
+    flex-direction: row;
+
+    &r {
+      flex-direction: row-reverse;
+    }
+  }
+
+  &c {
+    flex-direction: column;
+
+    &r {
+      flex-direction: column-reverse;
+    }
+  }
+
+  &w {
+    flex-wrap: wrap;
+  }
+
+  &nw {
+    flex-wrap: nowrap;
+  }
+
+  &f {
+    flex: 1;
+  }
+}
+
+.flex {
+  display: flex;
+
+  &-row,
+  &-row-reverse,
+  &-column,
+  &-column-reverse,
+  &-center,
+  &-start,
+  &-end,
+  &-stretch,
+  &-around,
+  &-between,
+  &-item-center,
+  &-item-start,
+  &-item-end,
+  &-item-stretch,
+  &-wrap,
+  &-nowrap,
+  &-fill {
+    @extend .flex;
+  }
+
+  @include properties;
+
+  &-row {
+    flex-direction: row;
+
+    &-reverse {
+      flex-direction: row-reverse;
+    }
+  }
+
+  &-column {
+    flex-direction: column;
+
+    &-reverse {
+      flex-direction: column-reverse;
+    }
+  }
+
+  &-center {
+    align-content: center;
+    justify-content: center;
+  }
+
+  &-start {
+    align-content: flex-start;
+    justify-content: flex-start;
+  }
+
+  &-end {
+    align-content: flex-end;
+    justify-content: flex-end;
+  }
+
+  &-stretch {
+    align-content: stretch;
+  }
+
+  &-around {
+    justify-content: space-around;
+  }
+
+  &-between {
+    justify-content: space-between;
+  }
+
+  &-item {
+    &-center {
+      align-items: center;
+    }
+
+    &-start {
+      align-items: flex-start;
+    }
+
+    &-end {
+      align-items: flex-end;
+    }
+
+    &-stretch {
+      align-items: stretch;
+    }
+  }
+
+  &-wrap {
+    flex-wrap: wrap;
+  }
+
+  &-nowrap {
+    flex-wrap: nowrap;
+  }
+
+  &-fill {
+    flex: 1;
+  }
+}

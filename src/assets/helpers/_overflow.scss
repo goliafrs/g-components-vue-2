@@ -1,0 +1,34 @@
+$variables: auto,
+hidden,
+inherit,
+initial,
+scroll,
+unset,
+visible;
+$axes: "x",
+"y";
+
+@mixin overflow {
+  @each $variable in $variables {
+    &--#{$variable} {
+      overflow: $variable;
+    }
+  }
+}
+
+@mixin overflowAxis {
+  @each $axis in $axes {
+    @each $variable in $variables {
+      &-#{$axis} {
+        &--#{$variable} {
+          overflow-#{$axis}: $variable;
+        }
+      }
+    }
+  }
+}
+
+.overflow {
+  @include overflow;
+  @include overflowAxis;
+}

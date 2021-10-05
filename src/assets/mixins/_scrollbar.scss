@@ -1,0 +1,28 @@
+@mixin scrollbar($size: 8px) {
+  scrollbar-color: $grey-300 $black-06;
+  scrollbar-width: thin;
+
+  &::-webkit-scrollbar {
+    border-radius: $size;
+    width: $size;
+    height: $size;
+  }
+
+  &::-webkit-scrollbar-track {
+    border-radius: $size;
+    background-color: $grey-300;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: $size;
+    background-color: $black-12;
+
+    &:hover {
+      background-color: $black-24;
+    }
+
+    &:active {
+      background-color: $black-36;
+    }
+  }
+}

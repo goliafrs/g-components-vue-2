@@ -1,0 +1,60 @@
+.hover {
+  &-parent {
+    &--opacity {
+      & .hover-child {
+        opacity: 0 !important;
+      }
+
+      &.hover--active,
+      &:hover {
+        & .hover-child {
+          opacity: 1 !important;
+        }
+
+        & .hover-hide {
+          opacity: 0 !important;
+        }
+      }
+    }
+
+    &--block {
+      & .hover-child {
+        display: none !important;
+      }
+
+      &.hover--active,
+      &:hover {
+        & .hover-child {
+          display: block !important;
+        }
+
+        & .hover-hide {
+          display: none !important;
+        }
+      }
+    }
+
+    &--flex {
+      & .hover-child {
+        display: none !important;
+      }
+
+      &.hover--active,
+      &:hover {
+        & .hover-child {
+          display: flex !important;
+        }
+
+        & .hover-hide {
+          display: none !important;
+        }
+      }
+    }
+  }
+
+  &-background {
+    &:hover {
+      background-color: $black-06;
+    }
+  }
+}

@@ -1,0 +1,17 @@
+$positions: static,
+relative,
+absolute,
+fixed,
+sticky;
+
+@mixin position {
+  .position {
+    @each $position in $positions {
+      &-#{$position} {
+        position: $position;
+      }
+    }
+  }
+}
+
+@include position;

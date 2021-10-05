@@ -1,0 +1,67 @@
+$primary: #1976d2 !default;
+$primary-light: #2196f3 !default;
+$primary-dark: #0d47a1 !default;
+
+$secondary: #ffa726 !default;
+$secondary-light: #ffcc80 !default;
+$secondary-dark: #fb8c00 !default;
+
+$accent: #2196f3 !default;
+$info: #2196f3 !default;
+$warning: #ffc107 !default;
+$error: #f44336 !default;
+$success: #4caf50 !default;
+
+$white: #ffffff !default;
+$white-96: rgba(255, 255, 255, 0.96) !default;
+$white-90: rgba(255, 255, 255, 0.9) !default;
+$white-84: rgba(255, 255, 255, 0.84) !default;
+$white-78: rgba(255, 255, 255, 0.78) !default;
+$white-72: rgba(255, 255, 255, 0.72) !default;
+$white-70: rgba(255, 255, 255, 0.7) !default;
+$white-66: rgba(255, 255, 255, 0.66) !default;
+$white-60: rgba(255, 255, 255, 0.6) !default;
+$white-54: rgba(255, 255, 255, 0.54) !default;
+$white-50: rgba(255, 255, 255, 0.5) !default;
+$white-48: rgba(255, 255, 255, 0.48) !default;
+$white-42: rgba(255, 255, 255, 0.42) !default;
+$white-36: rgba(255, 255, 255, 0.36) !default;
+$white-30: rgba(255, 255, 255, 0.3) !default;
+$white-24: rgba(255, 255, 255, 0.24) !default;
+$white-18: rgba(255, 255, 255, 0.18) !default;
+$white-12: rgba(255, 255, 255, 0.12) !default;
+$white-06: rgba(255, 255, 255, 0.06) !default;
+
+$black: #000000 !default;
+$black-96: rgba(0, 0, 0, 0.96) !default;
+$black-90: rgba(0, 0, 0, 0.9) !default;
+$black-84: rgba(0, 0, 0, 0.84) !default;
+$black-78: rgba(0, 0, 0, 0.78) !default;
+$black-72: rgba(0, 0, 0, 0.72) !default;
+$black-66: rgba(0, 0, 0, 0.66) !default;
+$black-60: rgba(0, 0, 0, 0.6) !default;
+$black-54: rgba(0, 0, 0, 0.54) !default;
+$black-48: rgba(0, 0, 0, 0.48) !default;
+$black-42: rgba(0, 0, 0, 0.42) !default;
+$black-36: rgba(0, 0, 0, 0.36) !default;
+$black-30: rgba(0, 0, 0, 0.3) !default;
+$black-24: rgba(0, 0, 0, 0.24) !default;
+$black-18: rgba(0, 0, 0, 0.18) !default;
+$black-12: rgba(0, 0, 0, 0.12) !default;
+$black-06: rgba(0, 0, 0, 0.06) !default;
+
+$grey: #9e9e9e !default;
+$gray: #9e9e9e !default;
+$grey-30: #303030 !default;
+$grey-50: #fafafa !default;
+$grey-100: #f5f5f5 !default;
+$grey-200: #eeeeee !default;
+$grey-300: #e0e0e0 !default;
+$grey-400: #bdbdbd !default;
+$grey-500: #9e9e9e !default;
+$grey-600: #757575 !default;
+$grey-700: #616161 !default;
+$grey-800: #424242 !default;
+$grey-900: #212121 !default;
+
+$colors: ('primary': $primary, 'secondary': $secondary, 'info': $info, 'warning': $warning, 'error': $error, 'success': $success, 'accent': $accent, 'white': $white, 'black': $black, 'grey': $grey, 'gray': $gray);

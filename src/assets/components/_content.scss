@@ -1,0 +1,11 @@
+.g {
+  &-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    transition-property: padding-left;
+    transition-duration: $transition-duration;
+    transition-timing-function: $transition-timing-function;
+    max-width: 100%;
+  }
+}

@@ -1,0 +1,16 @@
+@mixin border-radius {
+  .br,
+  .border-radius {
+    @each $size in $sizes {
+      &--#{$size} {
+        border-radius: #{$size}px;
+      }
+    }
+  }
+}
+
+@include border-radius;
+
+.rounded {
+  @extend .br--16;
+}

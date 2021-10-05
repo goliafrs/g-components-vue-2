@@ -1,0 +1,15 @@
+@mixin line-height {
+  @each $size in $sizes {
+    &-#{$size} {
+      line-height: #{$size}px;
+    }
+  }
+}
+
+.lh {
+  @include line-height;
+
+  &-n {
+    line-height: normal;
+  }
+}

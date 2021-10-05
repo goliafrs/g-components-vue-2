@@ -1,0 +1,356 @@
+@mixin colors {
+  @each $name, $color in $colors {
+    &--#{$name} {
+      color: var(--#{$name});
+
+      &.g-button--outline,
+      &.g-button--flat {
+
+        & > .g-button__icon,
+        & > .g-button__content,
+        & > .g-button__loading {
+          color: currentColor;
+        }
+
+        &:hover {
+          &::before {
+            background-color: rgba($color, 0.12);
+          }
+        }
+
+        &:active {
+          &::before {
+            background-color: rgba($color, 0.24);
+          }
+        }
+      }
+    }
+  }
+}
+
+.g {
+  &-button {
+    margin-top: 6px;
+    margin-bottom: 6px;
+    margin-left: 8px;
+    margin-right: 8px;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: 16px;
+    padding-right: 16px;
+    color: $black-84;
+    vertical-align: middle;
+    background-color: currentColor;
+    outline: none;
+    border-width: 1px;
+    border-style: solid;
+    border-color: transparent;
+    border-radius: 2px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    user-select: none;
+    cursor: pointer;
+    position: relative;
+    min-width: 88px;
+
+    @include absolute-height(36px);
+    @include g-elevation(2);
+
+    &:hover {
+      &::before {
+        background-color: $white-12;
+      }
+    }
+
+    &:active {
+      &::before {
+        background-color: $white-24;
+      }
+    }
+
+    &__icon {
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &__content {
+      color: var(--white);
+      white-space: nowrap;
+      text-transform: uppercase;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex: 1;
+
+      @include default-text-style(14px, 500);
+    }
+
+    &__loading {
+      color: var(--white);
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    & + .g-button {
+      margin-left: 0;
+    }
+
+    &::before {
+      content: '';
+      border-radius: 2px;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 100%;
+      width: 100%;
+    }
+
+    @include colors;
+
+    &--fab {
+      margin-top: 0;
+      margin-bottom: 0;
+      margin-left: 0;
+      margin-right: 0;
+      border-radius: 50%;
+
+      @include absolute-height(56px);
+      @include absolute-width(56px);
+
+      &.g-button--top {
+        top: 16px;
+      }
+
+      &.g-button--bottom {
+        bottom: 16px;
+      }
+
+      &.g-button--left {
+        left: 16px;
+      }
+
+      &.g-button--right {
+        right: 16px;
+      }
+    }
+
+    &--prefix {
+      padding-left: 4px;
+
+      & > .g-button__content {
+        padding-left: 0;
+      }
+    }
+
+    &--suffix {
+      padding-right: 4px;
+
+      & > .g-button__content {
+        padding-right: 0;
+      }
+    }
+
+    &--small {
+      padding-left: 8px;
+      padding-right: 8px;
+
+      @include absolute-height(28px);
+
+      & > .g-button__content {
+        font-size: 13px;
+      }
+    }
+
+    &--large {
+      padding-left: 24px;
+      padding-right: 24px;
+
+      @include absolute-height(44px);
+
+      & > .g-button__content {
+        font-size: 15px;
+      }
+    }
+
+    &--block {
+      width: 100%;
+    }
+
+    &--round {
+      padding-top: 0;
+      padding-bottom: 0;
+      padding-left: 0;
+      padding-right: 0;
+      border-radius: 50%;
+      justify-content: center;
+
+      &::before {
+        border-radius: 50%;
+      }
+
+      &:not(.g-button--fab) {
+        @include absolute-width(36px);
+
+        &.g-button--small {
+          @include absolute-width(28px);
+        }
+
+        &.g-button--large {
+          @include absolute-width(44px);
+        }
+      }
+    }
+
+    &--rounded {
+      border-radius: 28px;
+
+      &::before {
+        border-radius: 28px;
+      }
+
+      &.g-button--small {
+        border-radius: 20px;
+      }
+
+      &.g-button--large {
+        border-radius: 36px;
+      }
+    }
+
+    &--outline,
+    &--flat {
+      background-color: transparent;
+      box-shadow: none;
+
+      & > .g-button__icon,
+      & > .g-button__content,
+      & > .g-button__loading {
+        color: currentColor;
+      }
+
+      &:hover {
+        &::before {
+          background-color: $black-12;
+        }
+      }
+
+      &:active {
+        &::before {
+          background-color: $black-24;
+        }
+      }
+    }
+
+    &--outline {
+      border-color: currentColor;
+    }
+
+    &--depressed {
+      box-shadow: none;
+    }
+
+    &--toolbar {
+      margin-top: 0;
+      margin-bottom: 0;
+      margin-left: 0;
+      margin-right: 0;
+      background-color: transparent;
+      box-shadow: none;
+      border: none;
+      border-radius: 0;
+
+      @include absolute-height(100%);
+
+      &::before {
+        border-radius: 0;
+      }
+
+      &:hover {
+        &::before {
+          background-color: $white-12;
+        }
+      }
+
+      &:active {
+        &::before {
+          background-color: $white-24;
+        }
+      }
+    }
+
+    &--fixed {
+      position: fixed;
+    }
+
+    &--absolute {
+      position: absolute;
+    }
+
+    &--top {
+      top: 0;
+    }
+
+    &--bottom {
+      bottom: 0;
+    }
+
+    &--left {
+      left: 0;
+    }
+
+    &--right {
+      right: 0;
+    }
+
+    &--disabled {
+      cursor: default;
+      color: $grey-400 !important;
+      background-color: $grey-200 !important;
+      pointer-events: none;
+
+      &.g-button--outline {
+        border-color: $grey-400 !important;
+      }
+
+      &.g-button--outline,
+      &.g-button--flat {
+        background-color: transparent !important;
+      }
+
+      & > .g-button__icon,
+      & > .g-button__content,
+      & > .g-button__loading {
+        color: $grey-400 !important;
+
+        & > i {
+          color: $grey-400 !important;
+        }
+
+        & > .g-progress-circular {
+          color: $grey-400 !important;
+        }
+      }
+    }
+
+    &--loading {
+      pointer-events: none;
+
+      & > .g-button__icon,
+      & > .g-button__content {
+        opacity: 0;
+      }
+    }
+  }
+}

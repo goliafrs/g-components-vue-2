@@ -1,0 +1,112 @@
+$positions: (top, bottom, left, right);
+
+@mixin position {
+  @each $position in $positions {
+    &--#{$position} {
+      #{$position}: 16px;
+
+      @media only screen and (max-width: $xs) {
+        #{$position}: 0;
+      }
+    }
+  }
+}
+
+@mixin colors {
+  @each $name, $color in $colors {
+    &--#{$name} {
+      color: $color;
+    }
+  }
+}
+
+.g {
+  &-snackbar {
+    @include position;
+
+    color: $black-84;
+    position: fixed;
+    display: grid;
+    grid-gap: 16px;
+    z-index: 1000;
+
+    @media only screen and (max-width: $xs) {
+      width: 100%;
+    }
+
+    &__item {
+      @include colors;
+      @include g-elevation(2);
+
+      border-radius: 16px;
+      background-color: currentColor;
+      transition: opacity 150ms cubic-bezier(0, 0, 0.2, 1), transform 150ms cubic-bezier(0, 0, 0.2, 1);
+      animation-name: fadeInUp;
+      animation-duration: 150ms;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      pointer-events: auto;
+      overflow: hidden;
+      min-height: 48px;
+      min-width: 300px;
+      max-width: 600px;
+
+      @media only screen and (max-width: $xs) {
+        border-radius: 0;
+        min-width: unset;
+        max-width: 100%;
+        width: 100%;
+      }
+    }
+
+    &__text {
+      @include default-text-style(14px);
+
+      padding-top: 8px;
+      padding-bottom: 8px;
+      padding-left: 16px;
+      padding-right: 16px;
+      color: var(--white);
+      word-wrap: break-word;
+      overflow: hidden;
+      max-width: 500px;
+
+      @media screen and (max-width: $xs) {
+        font-size: 11px;
+      }
+    }
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.fadeInUp {
+  animation-name: fadeInUp;
+}
+
+@keyframes fadeOutDown {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    transform: translate3d(0, 100%, 0);
+  }
+}
+
+.fadeOutDown {
+  animation-name: fadeOutDown;
+}

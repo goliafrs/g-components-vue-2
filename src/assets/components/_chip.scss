@@ -1,0 +1,259 @@
+@mixin colors {
+  @each $name, $color in $colors {
+    &--#{$name} {
+      color: var(--#{$name});
+
+      @if $name == 'white' {
+        &.g-chip--outline {
+          & > .g-chip__content {
+            color: $black-84;
+          }
+        }
+
+        & > .g-chip__content {
+          color: $black-84;
+        }
+      }
+
+      &.g-chip--outline {
+        & > .g-chip__holder {
+          & > .g-chip__icon {
+            color: currentColor;
+          }
+        }
+
+        & > .g-chip__content,
+        & > .g-chip__loading {
+          color: currentColor;
+        }
+      }
+    }
+  }
+}
+
+.g {
+  &-chip {
+    padding-left: 12px;
+    padding-right: 12px;
+    color: $black-84;
+    background-color: currentColor;
+    border-width: 1px;
+    border-style: solid;
+    border-color: transparent;
+    border-radius: 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    min-width: 28px;
+
+    @include absolute-height(28px);
+    @include colors;
+
+    & + .g-chip {
+      margin-left: 8px;
+    }
+
+    &__holder {
+      @include absolute-height(28px);
+      @include absolute-width(28px);
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      & > .g-chip__icon {
+        color: var(--white);
+      }
+    }
+
+    &__content {
+      @include default-text-style(14px);
+
+      color: var(--white);
+      text-overflow: ellipsis;
+      text-decoration: none;
+      overflow-x: hidden;
+      white-space: nowrap;
+      display: inline-block;
+    }
+
+    &__loading {
+      color: var(--white);
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &--outline {
+      background-color: transparent;
+      border-color: currentColor;
+
+      & > .g-chip__icon,
+      & > .g-chip__content,
+      & > .g-chip__loading {
+        color: currentColor;
+      }
+    }
+
+    &--tiny {
+      @include absolute-height(20px);
+
+      padding-left: 4px;
+      padding-right: 4px;
+      border-radius: 10px;
+      min-width: 20px;
+
+      & + .g-chip {
+        margin-left: 4px;
+      }
+
+      & > .g-chip__content {
+        font-size: 11px;
+      }
+
+      & > .g-chip__holder {
+        @include absolute-height(20px);
+        @include absolute-width(20px);
+      }
+
+      &.g-chip--circle {
+        @include absolute-width(20px);
+      }
+    }
+
+    &--small {
+      @include absolute-height(24px);
+
+      padding-left: 8px;
+      padding-right: 8px;
+      border-radius: 12px;
+      min-width: 24px;
+
+      & + .g-chip {
+        margin-left: 6px;
+      }
+
+      & > .g-chip__content {
+        font-size: 13px;
+      }
+
+      & > .g-chip__holder {
+        @include absolute-height(24px);
+        @include absolute-width(24px);
+      }
+
+      &.g-chip--circle {
+        @include absolute-width(24px);
+      }
+    }
+
+    &--large {
+      @include absolute-height(36px);
+
+      padding-left: 16px;
+      padding-right: 16px;
+      border-radius: 24px;
+      min-width: 36px;
+
+      & + .g-chip {
+        margin-left: 10px;
+      }
+
+      & > .g-chip__content {
+        font-size: 15px;
+      }
+
+      & > .g-chip__holder {
+        @include absolute-height(36px);
+        @include absolute-width(36px);
+      }
+
+      &.g-chip--circle {
+        @include absolute-width(36px);
+      }
+    }
+
+    &--link {
+      cursor: pointer;
+    }
+
+    &--circle {
+      @include absolute-width(36px);
+
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    &--icon {
+      padding-left: 0;
+    }
+
+    &--prefix {
+      padding-left: 0;
+
+      & > .g-chip__content {
+        padding-left: 0;
+      }
+    }
+
+    &--suffix {
+      padding-right: 0;
+
+      & > .g-chip__content {
+        padding-right: 0;
+      }
+    }
+
+    &--cancelable {
+      padding-right: 0;
+    }
+
+    &--loading {
+      pointer-events: none;
+
+      & > .g-chip__icon,
+      & > .g-chip__content {
+        opacity: 0;
+      }
+    }
+
+    &--disabled {
+      cursor: default;
+      color: $grey-400 !important;
+      background-color: $grey-200 !important;
+      pointer-events: none;
+
+      &.g-chip--outline {
+        border-color: $grey-400 !important;
+      }
+
+      &.g-chip--outline,
+      &.g-chip--flat {
+        background-color: transparent !important;
+      }
+
+      & > .g-chip__icon {
+        & > .g-chip__holder {
+          & > i {
+            color: $grey-400 !important;
+          }
+        }
+      }
+
+      & > .g-chip__content,
+      & > .g-chip__loading {
+        color: $grey-400 !important;
+
+        & > .g-progress-circular {
+          color: $grey-400 !important;
+        }
+      }
+    }
+  }
+}

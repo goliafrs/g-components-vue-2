@@ -1,0 +1,266 @@
+.g {
+  &-select {
+    @include input-base;
+    @include input-style('g-select');
+
+    &__label {
+      cursor: pointer;
+    }
+
+    &__group {
+      flex-wrap: wrap;
+      cursor: pointer;
+    }
+
+    &__selection {
+      @include default-text-style;
+
+      padding-top: 4px;
+      padding-bottom: 4px;
+      color: $black-84;
+      transition-property: color;
+      transition-duration: 100ms;
+      position: relative;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      min-height: 32px;
+      min-width: 0;
+
+      &--hidden {
+        @include absolute-width(0);
+
+        opacity: 0;
+        pointer-events: none;
+        flex: 0;
+      }
+
+      &--fill {
+        flex: 1;
+      }
+    }
+
+    &__tabindex {
+      @include absolute-height(0);
+      @include absolute-width(0);
+
+      margin: 0;
+      padding: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      visibility: hidden;
+    }
+
+    &__chip {
+      margin-top: 4px;
+      margin-bottom: 4px;
+      margin-right: 8px;
+      background-color: $grey-300;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+
+      @include absolute-height(24px);
+
+      &-title {
+        padding-left: 8px;
+        padding-right: 28px;
+        font-size: 12px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow-x: hidden;
+        color: $black-84;
+        display: inline-block;
+      }
+
+      &-icon {
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        transition-property: width, max-width, min-width;
+        transition-duration: 200ms;
+        right: 0;
+        top: 0;
+
+        @include absolute-height(24px);
+        @include absolute-width(24px);
+
+        &::before {
+          content: '\e14c';
+          font-family: 'MaterialIcons';
+          font-size: 16px;
+          color: var(--grey);
+          line-height: 16px;
+          display: flex;
+          transition-property: transform;
+          transition-duration: 200ms;
+        }
+
+        &:hover {
+          background-color: $grey-400;
+
+          @include absolute-width(48px);
+
+          &::before {
+            color: var(--white);
+            transform: rotate(180deg);
+          }
+        }
+
+        &:active {
+          background-color: $grey-500;
+
+          &::before {
+            color: var(--white);
+          }
+        }
+      }
+    }
+
+    &__text {
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    &__input {
+      @include default-text-style(16px, 400, 32px);
+
+      &--hidden {
+        opacity: 0;
+        pointer-events: none;
+        flex: 0;
+        min-width: 0;
+        width: 0;
+      }
+    }
+
+    &__attach {
+      display: flex;
+      position: relative;
+      width: 100%;
+    }
+
+    &__menu {
+      overflow: hidden;
+      max-width: 100%;
+
+      &-content {
+        border-radius: 0;
+
+        &--hide {
+          display: none;
+        }
+      }
+    }
+
+    &:hover:not(.g-select--disabled):not(.g-select--error) {
+      & .g-select__border {
+        border-bottom-color: $black-84;
+      }
+    }
+
+    &--has {
+      &-before {
+        &:not(.g-select--filled):not(.g-select--active):not(.g-select--dense) {
+          & .g-select__label {
+            left: 32px;
+          }
+        }
+      }
+    }
+
+    &--solo,
+    &--outline,
+    &--outline-label {
+      &:not(.g-select--dense) {
+        & .g-select__selection {
+          min-height: 48px;
+        }
+
+        & .g-select__before,
+        & .g-select__after {
+          @include absolute-height(48px);
+          @include absolute-width(48px);
+        }
+
+        & .g-select__input {
+          line-height: 48px;
+        }
+      }
+    }
+
+    &--dense {
+      & .g-select__selection {
+        min-height: 36px;
+      }
+
+      & .g-select__chip {
+        margin-top: 2px;
+        margin-bottom: 2px;
+        margin-right: 6px;
+        border-radius: 8px;
+
+        @include absolute-height(18px);
+
+        & .g-select__chip-title {
+          padding-left: 6px;
+          padding-right: 24px;
+          font-size: 11px;
+        }
+
+        & .g-select__chip-icon {
+          border-radius: 8px;
+
+          @include absolute-height(18px);
+          @include absolute-width(18px);
+
+          &::before {
+            font-size: 14px;
+            line-height: 14px;
+          }
+
+          &:hover {
+            @include absolute-width(32px);
+          }
+        }
+      }
+
+      & .g-select__before,
+      & .g-select__after {
+        @include absolute-height(36px);
+        @include absolute-width(36px);
+      }
+
+      & .g-select__input {
+        line-height: 36px;
+      }
+    }
+
+    &--search {
+      &.g-select--solo,
+      &.g-select--outline {
+        &.g-select--autocomplete {
+          & .g-select__label {
+            opacity: 0;
+          }
+        }
+      }
+    }
+
+    &--multiple {
+      & .g-select__group {
+        cursor: default;
+
+        &--nowrap {
+          flex-wrap: nowrap;
+        }
+      }
+    }
+  }
+}

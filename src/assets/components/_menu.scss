@@ -1,0 +1,43 @@
+.g {
+  &-menu {
+    color: $black-84;
+    display: inline-block;
+    height: inherit; // Позволяет наследовать высоту от родительских элементов
+
+    &--disabled {
+      color: $black-36;
+      cursor: default;
+      user-select: none;
+    }
+
+    &__activator {
+      display: flex;
+      align-items: center;
+      height: inherit; // Позволяет наследовать высоту оборачиваемых элементов
+      width: 100%;
+    }
+
+    &__content {
+      border-radius: 4px;
+      display: none;
+      z-index: 50;
+
+      &--active {
+        display: block;
+      }
+
+      &--rounded {
+        border-radius: 16px;
+        overflow: hidden;
+      }
+
+      @include scrollbar;
+
+      &:not(.g-menu__content--transparent) {
+        background-color: var(--white);
+
+        @include g-elevation(2);
+      }
+    }
+  }
+}

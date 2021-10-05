@@ -1,0 +1,56 @@
+@mixin colors {
+  @each $name, $color in $colors {
+    &--#{$name} {
+      color: var(--white);
+      background-color: var(--#{$name});
+
+      @if $name == 'white' {
+        color: $black-84;
+
+        & * {
+          color: $black-84;
+        }
+      }
+    }
+  }
+}
+
+.g {
+  &-toolbar {
+    @include absolute-height(64px);
+    @include g-elevation(4);
+    @include colors;
+
+    color: var(--white);
+    background-color: var(--primary);
+    display: flex;
+    align-items: center;
+    flex: 1;
+    width: 100%;
+    z-index: 6;
+
+    &--fixed {
+      position: fixed;
+      top: 0;
+      left: 0;
+
+      & ~ .g-content {
+        margin-top: 64px;
+      }
+
+      & ~ .g-sidebar:not(.g-sidebar--mobile) {
+        top: 64px;
+      }
+    }
+
+    @media only screen and (max-width: $xs) {
+      @include absolute-height(52px);
+
+      &--fixed {
+        & ~ .g-content {
+          margin-top: 52px;
+        }
+      }
+    }
+  }
+}
