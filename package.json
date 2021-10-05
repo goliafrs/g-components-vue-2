@@ -1,7 +1,7 @@
 {
   "name": "g-components",
   "version": "1.13.8",
-  "description": "Vue.js components.",
+  "description": "Vue 2 component library.",
   "main": "index.js",
   "repository": {
     "type": "git",
